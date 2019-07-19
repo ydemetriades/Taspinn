@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taspin.Api", "Taspin.Api\Taspin.Api.csproj", "{E4662104-5253-4AA2-8A11-DD0EBCC2C3AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taspin.Data", "Taspin.Data\Taspin.Data.csproj", "{4FE18D11-50E2-4871-8562-0AF0EC3F0A00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{E4662104-5253-4AA2-8A11-DD0EBCC2C3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4662104-5253-4AA2-8A11-DD0EBCC2C3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4662104-5253-4AA2-8A11-DD0EBCC2C3AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE18D11-50E2-4871-8562-0AF0EC3F0A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE18D11-50E2-4871-8562-0AF0EC3F0A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE18D11-50E2-4871-8562-0AF0EC3F0A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE18D11-50E2-4871-8562-0AF0EC3F0A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
