@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,23 +10,31 @@ using Taspin.Data.Models;
 
 namespace Taspin.Data.Dac
 {
-    class ShoppingListDac
+    public class ShoppingListDac
     {
+        private const string selectShoppingListSP = "retrieveShoppingList";
+        private const string deleteShoppingListItemSP = "deleteItemFromShoppingList";
 
         private readonly string connstring;
 
-        private const string selectShoppingListSP = "";
-
-        public ShoppingListDac(string conn)
+        public ShoppingListDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
-        public ShoppingList SelectShoppingList(string userNameToSelect)
+        public ShoppingListModel SelectShoppingList(string userNameToSelect)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
-                return db.Query(selectShoppingListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<ShoppingListModel>(selectShoppingListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+            }
+        }
+
+        public void DeleteItem(int shoppingListToItemId)
+        {
+            using (var db = new MySqlConnection(connstring))
+            {
+                db.Query(deleteShoppingListItemSP, new { item_objid = shoppingListToItemId }, commandType: CommandType.StoredProcedure);
             }
         }
     }

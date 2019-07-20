@@ -6,27 +6,37 @@ using System.Text;
 using Taspin.Data.Models;
 using Dapper;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace Taspin.Data.Dac
 {
-    class UsersDac
+    public class UsersDac
     {
         private readonly string connstring;
 
-        private const string selectUserSP = "";
+        private const string selectUserSP = "retrieveUser";
 
-        public UsersDac(string conn)
+        public UsersDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
-        public User SelectUser(string userNameToSelect)
+        public UserModel SelectUser(string userNameToSelect)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
-                return db.Query(selectUserSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<UserModel>(selectUserSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 
+        public List<UserModel> SelectUsers()
+        {
+            using (var db = new MySqlConnection(connstring))
+            {                
+                var users = db.Query<UserModel>(" select * from TastPinDatabase.users ").ToList();
+
+                return users;
+            }
+        }
     }
 }
