@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Taspin.Data.Models;
 
 namespace Taspin.Data.Dac
 {
@@ -12,5 +13,7 @@ namespace Taspin.Data.Dac
         {
             connstring = databaseOptions.ConnectionString;
         }
+
+      
     }
 }

@@ -11,6 +11,8 @@ namespace Taspin.Data.Dac
 {
     public class ShoppingListDac
     {
+        private const string selectShoppingListSP = "retrieveShoppingList";
+        private const string deleteShoppingListItemSP = "deleteItemFromShoppingList";
 
         private readonly string connstring;
 
@@ -21,11 +23,18 @@ namespace Taspin.Data.Dac
 
         public ShoppingList SelectShoppingList(string userNameToSelect)
         {
-            return new ShoppingList(0, "shoppingListName");
-            //using (var db = new SqlConnection(connstring))
-            //{
-            //    return db.Query(selectShoppingListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
-            //}
+            using (var db = new SqlConnection(connstring))
+            {
+                return db.Query<ShoppingList>(selectShoppingListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+            }
+        }
+
+        public void DeleteItem(int shoppingListToItemId)
+        {
+            using (var db = new SqlConnection(connstring))
+            {
+                db.Query(deleteShoppingListItemSP, new { item_objid = shoppingListToItemId }, commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }
