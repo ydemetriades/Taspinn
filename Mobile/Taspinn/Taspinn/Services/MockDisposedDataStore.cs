@@ -52,10 +52,20 @@ namespace Taspinn.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var response = await _httpClient.DeleteAsync($"Item/{id}");
+            if(response == null)
+            {
+                return false;
+            }
+            if(response.IsSuccessCode)
+            {
+                var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+                items.Remove(oldItem);
 
-            return await Task.FromResult(true);
+                return true;
+            }
+
+            return false;
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(string username, bool forceRefresh = false)

@@ -8,7 +8,12 @@ namespace Taspinn.Services
 {
     public class MockShoppingDataStore : IShoppingDataStore<Item>
     {
-        List<Item> items;
+        private HttpClient _httpClient = new HttpClient()
+        {
+            BaseAddress = new Uri("http://192.168.3.125:5001/api/shoppinglist")
+        };
+
+        List<Item> items = new List<Item>();
 
         public MockShoppingDataStore()
         {
@@ -29,13 +34,6 @@ namespace Taspinn.Services
             }
         }
 
-        public async Task<bool> AddItemAsync(Item item)
-        {
-            items.Add(item);
-
-            return await Task.FromResult(true);
-        }
-
         public async Task<bool> UpdateItemCountAsync(Item item)
         {
             var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
@@ -45,22 +43,59 @@ namespace Taspinn.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var response = await _httpClient.DeleteAsync($"Item/{id}");
+            if(response == null)
+            {
+                return false;
+            }
+            if(response.IsSuccessCode)
+            {
+                var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+                items.Remove(oldItem);
 
-            return await Task.FromResult(true);
+                return true;
+            }
+
+            return false;
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<IEnumerable<Item>> GetItemsAsync(string username, bool forceRefresh = false)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
-        }
+            if(items == null || !items.Any() || forceRefresh==true)
+            {
+                var response = await _httpClient.GetAsync(username);
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
-        {
-            return await Task.FromResult(items);
+                if(response == null)
+                {
+                    return items;
+                }
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                if(content == null)
+                {
+                    return items;
+                }
+
+                var loc_items = JsonConvert.DeserializeObject<ShoppingListModel>(content);
+
+                if(loc_items == null)
+                {
+                    return items;
+                }
+
+                items = loc_items.Items.Select(x => new Item
+                {
+                    Id = x.DisposeListToItemId,
+                    Name = x.Name,
+                    Barcode = x.BarCode,
+                    Count = x.Count
+                });
+            }
+
+            return items;
         }
     }
 }
