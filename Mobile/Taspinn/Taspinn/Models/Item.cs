@@ -4,7 +4,7 @@ namespace Taspinn.Models
 {
     public class Item
     {
-        public string Id { get; set; } //TODO: Int
+        public int Id { get; set; } //TODO: Int
 
         public string Name { get; set; }
 

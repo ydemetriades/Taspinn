@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Taspinn.Models;
 using Newtonsoft.Json;
+using Taspin.Data.Models;
+using System.Linq;
 
 namespace Taspinn.Services
 {
@@ -72,9 +74,20 @@ namespace Taspinn.Services
                 return new List<Item>();
             }
 
-            var items = JsonConvert.DeserializeObject<IEnumerable<Item>>(content);
-            
-            return items ?? new List<Item>();
+            var items = JsonConvert.DeserializeObject<DisposeListModel>(content);
+
+            if(items == null)
+            {
+                return new List<Item>();
+            }
+
+            return items.Items.Select(x => new Item
+            {
+                Id = x.DisposeListToItemId,
+                Name = x.Name,
+                Barcode = x.BarCode,
+                Count = x.Count
+            });
         }
 
         public Task<bool> MoveItemToShoppingListAsync(bool forceRefresh = false)

@@ -19,4 +19,18 @@
   <ItemGroup>
     <Folder Include="Services\Dto\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Taspin.Api\Taspin.Data\Models\DisposeListModel.cs">
+      <Link>Services\Dto\DisposeListModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Taspin.Api\Taspin.Data\Models\ItemModel.cs">
+      <Link>Services\Dto\ItemModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Taspin.Api\Taspin.Data\Models\ShoppingListModel.cs">
+      <Link>Services\Dto\ShoppingListModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Taspin.Api\Taspin.Data\Models\UserModel.cs">
+      <Link>Services\Dto\UserModel.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>
