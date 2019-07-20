@@ -38,7 +38,7 @@ namespace Taspin.Api.Services
 
         public void UpdateItemCountrer(int listToItemId, int counter)
         {
-            _dac.UpdateCountForItemInDisposeList(listToItemId, counter);
+            _dac.UpdateCountForItemInShoppingList(listToItemId, counter);
         }
     }
 }
