@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Taspinn.Models;
 using Taspinn.ViewModels;
 using Xamarin.Forms;
@@ -49,7 +47,7 @@ namespace Taspinn.Views
         {
             var mi = ((MenuItem)sender);
             var item = (Item)mi.CommandParameter;
-            var delete = await DisplayAlert($"Delete {item.Text}", "This action cannot be undone.", "Delete", "Cancel");
+            var delete = await DisplayAlert($"Delete {item.Name}", "This action cannot be undone.", "Delete", "Cancel");
 
             if (delete)
             {

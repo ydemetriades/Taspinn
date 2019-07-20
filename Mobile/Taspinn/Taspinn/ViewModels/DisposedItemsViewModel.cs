@@ -19,7 +19,7 @@ namespace Taspinn.ViewModels
 
         public DisposedItemsViewModel()
         {
-            Title = "Disposed List";
+            Title = "Disposal List";
             DataStore = new MockDisposedDataStore();
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -72,6 +72,22 @@ namespace Taspinn.ViewModels
             }
 
             return result;
+        }
+
+        public async Task<bool> MoveItemToShoppingListAsync(string id)
+        {
+            //var result = await DataStore.DeleteItemAsync(id);
+
+            //if (result)
+            //{
+            //    var item = Items.FirstOrDefault(x => x.Id == id);
+            //    if (item != null)
+            //    {
+            //        Items.Remove(item);
+            //    }
+            //}
+
+            //return result;
         }
     }
 }

@@ -28,12 +28,19 @@ namespace Taspinn.Views
 
             var item = new Item
             {
-                Text = "Item 1",
+                Name = "Item 1",
                 Description = "This is an item description."
             };
 
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
+        }
+
+        async void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            double value = e.NewValue;
+
+            await viewModel.UpdateCountAsync((int)value);
         }
     }
 }

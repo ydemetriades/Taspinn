@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-
-using Taspinn.Models;
-using Taspinn.Views;
-using Taspinn.Services;
 using System.Linq;
+using System.Threading.Tasks;
+using Taspinn.Models;
+using Taspinn.Services;
+using Taspinn.Views;
+using Xamarin.Forms;
 
 namespace Taspinn.ViewModels
 {
@@ -19,7 +17,7 @@ namespace Taspinn.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Shopping List";
+            Title = "Shop List";
             DataStore = new MockShoppingDataStore();
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());

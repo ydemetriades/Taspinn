@@ -56,7 +56,7 @@ namespace Taspinn.Views
         {
             var mi = ((MenuItem)sender);
             var item = (Item)mi.CommandParameter;
-            var delete = await DisplayAlert($"Delete {item.Text}", "This action cannot be undone.", "Delete", "Cancel");
+            var delete = await DisplayAlert($"Delete {item.Name}", "This action cannot be undone.", "Delete", "Cancel");
 
             if (delete)
             {

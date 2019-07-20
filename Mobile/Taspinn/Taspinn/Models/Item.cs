@@ -4,8 +4,14 @@ namespace Taspinn.Models
 {
     public class Item
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
+        public string Id { get; set; } //TODO: Int
+
+        public string Name { get; set; }
+
         public string Description { get; set; }
+
+        public string Barcode { get; set; }
+
+        public int Count { get; set; }
     }
 }
