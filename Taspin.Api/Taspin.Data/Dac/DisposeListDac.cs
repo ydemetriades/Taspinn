@@ -24,7 +24,15 @@ namespace Taspin.Data.Dac
         {
             using (var db = new SqlConnection(connstring))
             {
-                return db.Query(selectDisposeListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<DisposeList>(selectDisposeListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+            }
+        }
+
+        public void DeleteItem(int disposeListToItemId)
+        {
+            using (var db = new SqlConnection(connstring))
+            {
+                db.Query(selectDisposeListSP, new { item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
             }
         }
     }
