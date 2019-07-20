@@ -6,5 +6,7 @@ namespace Taspin.Data.Models
         public User()
         {
         }
+
+        public int id { get; set; }
     }
 }
