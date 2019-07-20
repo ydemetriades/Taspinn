@@ -6,6 +6,7 @@ using System.Text;
 using Taspin.Data.Models;
 using Dapper;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace Taspin.Data.Dac
 {
@@ -22,11 +23,20 @@ namespace Taspin.Data.Dac
 
         public UserModel SelectUser(string userNameToSelect)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
                 return db.Query<UserModel>(selectUserSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 
+        public List<UserModel> SelectUsers()
+        {
+            using (var db = new MySqlConnection(connstring))
+            {                
+                var users = db.Query<UserModel>(" select * from TastPinDatabase.users ").ToList();
+
+                return users;
+            }
+        }
     }
 }
