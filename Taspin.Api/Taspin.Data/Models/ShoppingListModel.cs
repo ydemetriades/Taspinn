@@ -11,16 +11,16 @@ namespace Taspin.Data.Models
 
         public class ShoppingListItemModel
         {
-            [DataMember(Name = "outName")]
+            [DataMember(Name = "name")]
             public string Name { get; set; }
 
-            [DataMember(Name = "outBarcode")]
+            [DataMember(Name = "barcode")]
             public string BarCode { get; set; }
 
-            [DataMember(Name = "outObjid")]
+            [DataMember(Name = "objid")]
             public int ShoppingListToItemId { get; set; }
 
-            [DataMember(Name = "outCount")]
+            [DataMember(Name = "count")]
             public int Count { get; set; }
         }
     }
