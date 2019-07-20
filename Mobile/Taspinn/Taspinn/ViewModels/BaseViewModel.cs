@@ -12,8 +12,6 @@ namespace Taspinn.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IShoppingDataStore<Item> DataStore { get; set; }//=> DependencyService.Get<IShoppingDataStore<Item>>() ?? new MockShoppingDataStore();
-
         bool isBusy = false;
         public bool IsBusy
         {

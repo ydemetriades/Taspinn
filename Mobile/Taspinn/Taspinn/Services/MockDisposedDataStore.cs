@@ -5,8 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Taspinn.Models;
 using Newtonsoft.Json;
-using Taspin.Data.Models;
-using System.Linq;
+using Taspin.Api.Services.Dtos;
 
 namespace Taspinn.Services
 {
@@ -14,7 +13,7 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://192.168.xx.xx:32000/api/disposelist")
+            BaseAddress = new Uri("http://192.168.0.6:5001/api/disposelist")
         };
 
         List<Item> items;
@@ -24,12 +23,12 @@ namespace Taspinn.Services
             items = new List<Item>();
             var mockItems = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Name = "First item", Description="This is an item description." , Count = 3},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Second item", Description="This is an item description.", Count = 5 },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Sixth item", Description="This is an item description." }
+                new Item { Id = 1, Name = "First item", Description="This is an item description." , Count = 3},
+                new Item { Id = 2, Name = "Second item", Description="This is an item description.", Count = 5 },
+                new Item { Id = 3, Name = "Third item", Description="This is an item description." },
+                new Item { Id = 4, Name = "Fourth item", Description="This is an item description." },
+                new Item { Id = 5, Name = "Fifth item", Description="This is an item description." },
+                new Item { Id = 6, Name = "Sixth item", Description="This is an item description." }
             };
 
             foreach (var item in mockItems)
@@ -38,26 +37,38 @@ namespace Taspinn.Services
             }
         }
 
-        public async Task<bool> UpdateCountAsync(Item item)
+        public async Task<bool> UpdateCountAsync(int id, int count)
         {
-            //const string = 
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
 
-            //_httpClient.PostAsync
+            var response = await _httpClient.PutAsync($"Item/{id}/Count/{count}", null);
+            if (response == null)
+            {
+                return false;
+            }
+            if (response.IsSuccessStatusCode)
+            {
+                var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
 
-            return await Task.FromResult(true);
+                items.Remove(oldItem);
+
+                oldItem.Count = count;
+
+                items.Add(oldItem);
+
+                return true;
+            }
+
+            return false;
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"Item/{id}");
             if(response == null)
             {
                 return false;
             }
-            if(response.IsSuccessCode)
+            if(response.IsSuccessStatusCode)
             {
                 var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
                 items.Remove(oldItem);
@@ -70,34 +81,40 @@ namespace Taspinn.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(string username, bool forceRefresh = false)
         {
-            var response = await _httpClient.GetAsync(username);
-
-            if(response == null)
+            if (items == null || !items.Any() || forceRefresh == true)
             {
-                return new List<Item>();
+                var response = await _httpClient.GetAsync($"DisposeList/{username}");
+
+                if (response == null)
+                {
+                    return items;
+                }
+
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (content == null)
+                {
+                    return items;
+                }
+
+                var list = JsonConvert.DeserializeObject<DisposeList>(content);
+                var loc_items = list.Items;
+
+                if (loc_items == null)
+                {
+                    return items;
+                }
+
+                items = loc_items.Select(x => new Item
+                {
+                    Id = x.DisposeListToItemId,
+                    Name = x.Name,
+                    Barcode = x.BarCode,
+                    Count = x.Count
+                }).ToList();
             }
 
-            var content = await response.Content.ReadAsStringAsync();
-
-            if(content == null)
-            {
-                return new List<Item>();
-            }
-
-            var items = JsonConvert.DeserializeObject<DisposeListModel>(content);
-
-            if(items == null)
-            {
-                return new List<Item>();
-            }
-
-            return items.Items.Select(x => new Item
-            {
-                Id = x.DisposeListToItemId,
-                Name = x.Name,
-                Barcode = x.BarCode,
-                Count = x.Count
-            });
+            return items;
         }
 
         public Task<bool> MoveItemToShoppingListAsync(bool forceRefresh = false)

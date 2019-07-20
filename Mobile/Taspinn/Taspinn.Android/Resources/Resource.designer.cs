@@ -2776,7 +2776,12 @@ namespace Taspinn.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_id = global::Taspinn.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Taspinn.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ViewStubCompat_android_layout = global::Taspinn.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscanneractivitylayout = global::Taspinn.Droid.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscannerfragmentlayout = global::Taspinn.Droid.Resource.Layout.zxingscannerfragmentlayout;
 			global::ZXing.Net.Mobile.Forms.Android.Resource.String.library_name = global::Taspinn.Droid.Resource.String.library_name;
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::Taspinn.Droid.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::Taspinn.Droid.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::Taspinn.Droid.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Animation
@@ -6647,6 +6652,9 @@ namespace Taspinn.Droid
 			// aapt resource value: 0x7f0b0082
 			public const int content = 2131427458;
 			
+			// aapt resource value: 0x7f0b00fd
+			public const int contentFrame = 2131427581;
+			
 			// aapt resource value: 0x7f0b0075
 			public const int contentPanel = 2131427445;
 			
@@ -6797,8 +6805,8 @@ namespace Taspinn.Droid
 			// aapt resource value: 0x7f0b00f5
 			public const int main_toolbar = 2131427573;
 			
-			// aapt resource value: 0x7f0b00fe
-			public const int masked = 2131427582;
+			// aapt resource value: 0x7f0b00ff
+			public const int masked = 2131427583;
 			
 			// aapt resource value: 0x7f0b00e7
 			public const int media_actions = 2131427559;
@@ -7238,8 +7246,8 @@ namespace Taspinn.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int view_offset_helper = 2131427355;
 			
-			// aapt resource value: 0x7f0b00fd
-			public const int visible = 2131427581;
+			// aapt resource value: 0x7f0b00fe
+			public const int visible = 2131427582;
 			
 			// aapt resource value: 0x7f0b00d4
 			public const int volume_item_container = 2131427540;
@@ -7618,6 +7626,12 @@ namespace Taspinn.Droid
 			
 			// aapt resource value: 0x7f040054
 			public const int Toolbar = 2130968660;
+			
+			// aapt resource value: 0x7f040055
+			public const int zxingscanneractivitylayout = 2130968661;
+			
+			// aapt resource value: 0x7f040056
+			public const int zxingscannerfragmentlayout = 2130968662;
 			
 			static Layout()
 			{

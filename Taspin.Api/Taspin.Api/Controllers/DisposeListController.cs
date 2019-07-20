@@ -50,5 +50,11 @@ namespace Taspin.Api.Controllers
         {
             _disposeListService.MoveToShoppingList(disposeListToItemId);
         }
+
+        [HttpPut("Item/{disposeListToItemId}/Count/{count}")]
+        public void UpdateItemCount(int disposeListToItemId, int count)
+        {
+            _disposeListService.UpdateItemCountrer(disposeListToItemId, count);
+        }
     }
 }
