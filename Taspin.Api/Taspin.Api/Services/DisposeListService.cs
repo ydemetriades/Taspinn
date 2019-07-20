@@ -28,10 +28,10 @@ namespace Taspin.Api.Services
                         .Items
                         .Select(i => new DisposeList.DisposeListItem
                         {
-                            BarCode = i.BarCode,
-                            Count = i.Count,
-                            DisposeListToItemId = i.DisposeListToItemId,
-                            Name = i.Name,
+                            BarCode = i.barcode,
+                            Count = i.count,
+                            DisposeListToItemId = i.objid,
+                            Name = i.name,
                         })
                         .ToList()
             };

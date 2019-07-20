@@ -28,10 +28,10 @@ namespace Taspin.Api.Services
                         .Items
                         .Select(i => new ShoppingList.ShoppingListItem
                         {
-                            BarCode = i.BarCode,
-                            Count = i.Count,
+                            BarCode = i.barcode,
+                            Count = i.count,
                             Name = i.Name,
-                            ShoppingListToItemId = i.ShoppingListToItemId
+                            ShoppingListToItemId = i.objid
                         })
                         .ToList()
             };

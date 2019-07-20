@@ -19,7 +19,7 @@ namespace Taspin.Api.Services
             return new User
             {
                 //Email = model.Email,
-                Id = model.Id,
+                Id = model.user_id,
                 //Name = model.Name,
                 //Password = model.Password,
                 //Surname = model.Surname,

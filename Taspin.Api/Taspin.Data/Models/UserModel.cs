@@ -5,11 +5,9 @@ namespace Taspin.Data.Models
 {
     public class UserModel
     {
-        [DataMember(Name = "user_id")]
-        public int Id { get; set; }
+        public int user_id { get; set; }
 
-        [DataMember(Name = "username")]
-        public string Username { get; set; }
+        public string username { get; set; }
 
         //[DataMember(Name = "name")]
         //public string Name { get; set; }

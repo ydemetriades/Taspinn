@@ -10,17 +10,13 @@ namespace Taspin.Data.Models
 
         public class DisposeListItemModel
         {
-            [DataMember(Name = "name")]
-            public string Name { get; set; }
+            public string name { get; set; }
 
-            [DataMember(Name = "barcode")]
-            public string BarCode { get; set; }
+            public string barcode { get; set; }
 
-            [DataMember(Name = "objid")]
-            public int DisposeListToItemId { get; set; }
+            public int objid { get; set; }
 
-            [DataMember(Name = "count")]
-            public int Count { get; set; }
+            public int count { get; set; }
         }
     }
 }
