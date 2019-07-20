@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Taspin.Api.Services.Dtos;
 using Taspin.Data.Dac;
 
 namespace Taspin.Api.Services

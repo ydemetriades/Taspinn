@@ -10,6 +10,7 @@
     <Folder Include="wwwroot\" />
     <Folder Include="Options\" />
     <Folder Include="Services\" />
+    <Folder Include="Services\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

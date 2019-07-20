@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Taspin.Api.Services.Dtos;
 
 namespace Taspin.Api.Services
 {
@@ -11,19 +10,5 @@ namespace Taspin.Api.Services
         void UpdateItemCountrer(int listToItemId, int counter);
     }
 
-    public class DisposeList
-    {
-        public List<DisposeListItem> Items { get; set; }
-
-        public class DisposeListItem
-        {
-            public string Name { get; set; }
-
-            public string BarCode { get; set; }
-
-            public int DisposeListToItemId { get; set; }
-
-            public int Count { get; set; }
-        }
-    }
+    
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Taspin.Api.Services;
-using Taspin.Data.Dac;
-using Taspin.Data.Models;
+using Taspin.Api.Services.Dtos;
 
 namespace Taspin.Api.Controllers
 {
