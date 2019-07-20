@@ -14,6 +14,7 @@ namespace Taspin.Data.Dac
     {
         private const string selectShoppingListSP = "retrieveShoppingList";
         private const string deleteShoppingListItemSP = "deleteItemFromShoppingList";
+        private const string updateCountForItemsInShoppingListSP = "updateCountForItemsInShoppingList";
 
         private readonly string connstring;
 
@@ -35,6 +36,14 @@ namespace Taspin.Data.Dac
             using (var db = new MySqlConnection(connstring))
             {
                 db.Query(deleteShoppingListItemSP, new { item_objid = shoppingListToItemId }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdateCountForItemInShoppingList(int shoppingListToItemId, int count)
+        {
+            using (var db = new MySqlConnection(connstring))
+            {
+                db.Query(updateCountForItemsInShoppingListSP, new { item_objid = shoppingListToItemId, in_count = count }, commandType: CommandType.StoredProcedure);
             }
         }
     }

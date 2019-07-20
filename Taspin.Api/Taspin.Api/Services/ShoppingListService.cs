@@ -13,12 +13,7 @@ namespace Taspin.Api.Services
             _dac = dac;
         }
 
-        public void DeleteItem(int listToItemId)
-        {
-            _dac.DeleteItem(listToItemId);
-        }
-
-        ShoppingList IShoppingListService.GetUserShoppingList(string username)
+        public ShoppingList GetUserShoppingList(string username)
         {
             var models = _dac.SelectShoppingList(username);
 
@@ -34,6 +29,16 @@ namespace Taspin.Api.Services
                         })
                         .ToList()
             };
+        }
+
+        public void DeleteItem(int listToItemId)
+        {
+            _dac.DeleteItem(listToItemId);
+        }
+
+        public void UpdateItemCountrer(int listToItemId, int counter)
+        {
+            _dac.UpdateCountForItemInDisposeList(listToItemId, counter);
         }
     }
 }

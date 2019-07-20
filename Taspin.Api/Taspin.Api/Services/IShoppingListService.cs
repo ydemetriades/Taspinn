@@ -7,6 +7,7 @@ namespace Taspin.Api.Services
     {
         ShoppingList GetUserShoppingList(string username);
         void DeleteItem(int listToItemId);
+        void UpdateItemCountrer(int listToItemId, int counter);
     }
 
     public class ShoppingList
