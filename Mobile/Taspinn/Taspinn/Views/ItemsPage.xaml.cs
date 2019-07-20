@@ -52,10 +52,16 @@ namespace Taspinn.Views
                 viewModel.LoadItemsCommand.Execute(null);
         }
 
-        public void OnDelete(object sender, EventArgs e)
+        public async void OnDelete(object sender, EventArgs e)
         {
             var mi = ((MenuItem)sender);
-            DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+            var item = (Item)mi.CommandParameter;
+            var delete = await DisplayAlert($"Delete {item.Text}", "This action cannot be undone.", "Delete", "Cancel");
+
+            if (delete)
+            {
+                await viewModel.DeleteItemAsync(item.Id);
+            }
         }
     }
 }

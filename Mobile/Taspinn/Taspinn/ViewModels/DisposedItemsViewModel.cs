@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Taspinn.Models;
 using Taspinn.Views;
 using Taspinn.Services;
+using System.Linq;
 
 namespace Taspinn.ViewModels
 {
@@ -57,9 +58,20 @@ namespace Taspinn.ViewModels
             }
         }
 
-        //public async Task<bool> DeleteItem()
-        //{
+        public async Task<bool> DeleteItemAsync(string id)
+        {
+            var result = await DataStore.DeleteItemAsync(id);
 
-        //}
+            if (result)
+            {
+                var item = Items.FirstOrDefault(x => x.Id == id);
+                if (item != null)
+                {
+                    Items.Remove(item);
+                }
+            }
+
+            return result;
+        }
     }
 }
