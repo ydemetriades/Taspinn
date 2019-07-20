@@ -14,12 +14,10 @@ namespace Taspin.Api.Controllers
     [ApiController]
     public class ShoppingListController : ControllerBase
     {
-        private  readonly ShoppingListDac shoppingListDac;
         private readonly IShoppingListService _shoppingListService;
 
-        public ShoppingListController(ShoppingListDac shoppingListDac, IShoppingListService shoppingListService)
+        public ShoppingListController(IShoppingListService shoppingListService)
         {
-            this.shoppingListDac = shoppingListDac;
             this._shoppingListService = shoppingListService;
         }
 

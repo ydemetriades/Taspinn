@@ -14,12 +14,10 @@ namespace Taspin.Api.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly UsersDac _dac;
         private readonly IUserService _userService;
 
-        public UserController(UsersDac dac, IUserService userService)
+        public UserController(IUserService userService)
         {
-            _dac = dac;
             _userService = userService;
         }
 

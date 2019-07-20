@@ -14,12 +14,10 @@ namespace Taspin.Api.Controllers
     public class DisposeListController : ControllerBase
     {
 
-        private readonly DisposeListDac disposeListDac;
         private readonly IDisposeListService _disposeListService;
 
-        public DisposeListController(DisposeListDac disposeistDac, IDisposeListService disposeListService)
+        public DisposeListController(IDisposeListService disposeListService)
         {
-            this.disposeListDac = disposeistDac;
             this._disposeListService = disposeListService;
         }
 
