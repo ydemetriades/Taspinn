@@ -2,16 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RuntimeIdentifiers>Win10-x64</RuntimeIdentifiers>
+   
     <StartupObject>Taspin.Api.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Include="Options\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Taspin.Data\Taspin.Data.csproj" />
+  </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Taspin.Data.Dac
 {
-    class UsersDac
+    public class UsersDac
     {
         private readonly string connstring;
 
