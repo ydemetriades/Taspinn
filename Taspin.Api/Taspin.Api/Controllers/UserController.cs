@@ -20,6 +20,12 @@ namespace Taspin.Api.Controllers
             _dac = dac;
         }
 
+        [HttpGet()]
+        public ActionResult<List<UserModel>> Get()
+        {
+            return _dac.SelectUsers();
+        }
+
         // GET api/values/5
         [HttpGet("{userName}")]
         public ActionResult<UserModel> Get(string userName)
