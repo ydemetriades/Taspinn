@@ -13,7 +13,7 @@ namespace Taspin.Data.Dac
     {
         private readonly string connstring;
 
-        private const string selectUserSP = "";
+        private const string selectUserSP = "retrieveUser";
 
         public UsersDac(DatabaseOptions databaseOptions)
         {
@@ -24,7 +24,7 @@ namespace Taspin.Data.Dac
         {
             using (var db = new SqlConnection(connstring))
             {
-                return db.Query(selectUserSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query(selectUserSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 
