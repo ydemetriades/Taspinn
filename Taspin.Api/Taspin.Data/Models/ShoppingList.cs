@@ -1,10 +1,11 @@
 ﻿using System;
 namespace Taspin.Data.Models
 {
-    public class Product
+    public class ShoppingList
     {
-        public Product()
+        public ShoppingList()
         {
         }
+
     }
 }
