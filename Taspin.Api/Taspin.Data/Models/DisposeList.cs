@@ -3,7 +3,7 @@
 
 namespace Taspin.Data.Models
 {
-    class DisposeList
+    public class DisposeList
     {
     }
 }

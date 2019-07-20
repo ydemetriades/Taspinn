@@ -14,11 +14,9 @@ namespace Taspin.Data.Dac
 
         private readonly string connstring;
 
-        private const string selectShoppingListSP = "";
-
-        public ShoppingListDac(string conn)
+        public ShoppingListDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
         public ShoppingList SelectShoppingList(string userNameToSelect)

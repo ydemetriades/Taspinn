@@ -15,9 +15,9 @@ namespace Taspin.Data.Dac
 
         private const string selectDisposeListSP = "";
 
-        public DisposeListDac(string conn)
+        public DisposeListDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
         public DisposeList SelectDisposeList(string userNameToSelect)

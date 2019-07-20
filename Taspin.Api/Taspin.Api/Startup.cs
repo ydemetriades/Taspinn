@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Taspin.Api.Options;
+using Taspin.Data;
 using Taspin.Data.Dac;
 
 namespace Taspin.Api
@@ -33,16 +34,18 @@ namespace Taspin.Api
 
             string taspinDbConnString = Configuration.GetValue<string>("AppSettings:TaspinDatabaseConnectionString");
 
-            services.AddScoped<ShoppingListDac>(tt =>
+            services.AddSingleton<DatabaseOptions>(tt =>
             {
-                return new ShoppingListDac(taspinDbConnString);
+                return new DatabaseOptions(taspinDbConnString);
             });
 
-            services.AddScoped<DisposeListDac>(tt =>
-            {
-                return new DisposeListDac(taspinDbConnString);
-            });
+            services.AddScoped<ShoppingListDac>();
 
+            services.AddScoped<DisposeListDac>();
+
+            services.AddScoped<UsersDac>();
+
+            services.AddScoped<ItemsDac>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

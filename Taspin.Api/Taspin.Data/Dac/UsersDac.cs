@@ -15,9 +15,9 @@ namespace Taspin.Data.Dac
 
         private const string selectUserSP = "";
 
-        public UsersDac(string conn)
+        public UsersDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
         public User SelectUser(string userNameToSelect)

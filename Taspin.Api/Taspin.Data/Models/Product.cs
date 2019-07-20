@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Taspin.Data.Models
 {
-    class Product
+    public class Product
     {
 
     }
