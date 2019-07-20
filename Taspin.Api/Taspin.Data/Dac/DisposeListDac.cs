@@ -13,7 +13,9 @@ namespace Taspin.Data.Dac
     {
         private readonly string connstring;
 
-        private const string selectDisposeListSP = "";
+        private const string selectDisposeListSP = "retrieveDisposedList";
+        private const string deleteDisposeListItemSP = "deleteItemFromDisposedList";
+        private const string moveDisposeListItemToShoppingListSP = "moveItemFromDisposedToShopping";
 
         public DisposeListDac(DatabaseOptions databaseOptions)
         {
@@ -24,7 +26,7 @@ namespace Taspin.Data.Dac
         {
             using (var db = new SqlConnection(connstring))
             {
-                return db.Query<DisposeList>(selectDisposeListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<DisposeList>(selectDisposeListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 
@@ -32,7 +34,15 @@ namespace Taspin.Data.Dac
         {
             using (var db = new SqlConnection(connstring))
             {
-                db.Query(selectDisposeListSP, new { item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
+                db.Query(deleteDisposeListItemSP, new { item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void MoveItemToShoppingList(int disposeListToItemId)
+        {
+            using (var db = new SqlConnection(connstring))
+            {
+                db.Query(moveDisposeListItemToShoppingListSP, new { disposed_item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
             }
         }
     }

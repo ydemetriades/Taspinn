@@ -28,9 +28,15 @@ namespace Taspin.Api.Controllers
         }
 
         [HttpDelete("Item/{disposeListToItemId}")]
-        public void DeleteMe(int disposeListToItemId)
+        public void Delete(int disposeListToItemId)
         {
             disposeListDac.DeleteItem(disposeListToItemId);
+        }
+
+        [HttpPut("Item/Move/ShoppingList/{disposeListToItemId}")]
+        public void MoveToShoppingList(int disposeListToItemId)
+        {
+            disposeListDac.MoveItemToShoppingList(disposeListToItemId);
         }
     }
 }
