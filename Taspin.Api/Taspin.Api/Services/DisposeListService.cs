@@ -15,11 +15,19 @@ namespace Taspin.Api.Services
 
         public void DeleteItem(int listToItemId)
         {
+            if (listToItemId <= 0)
+                throw new ArgumentException("Id was less or equal zero", nameof(listToItemId));
+
             _dac.DeleteItem(listToItemId);
         }
 
         public DisposeList GetUserDisposeList(string username)
         {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                throw new ArgumentException("Username was null or white space", nameof(username));
+            }
+
             var models = _dac.SelectDisposeList(username);
 
             return new DisposeList

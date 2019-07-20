@@ -24,13 +24,29 @@ namespace Taspin.Api.Controllers
         [HttpGet("{UserName}")]
         public ActionResult<DisposeList> Get(string username)
         {
-            return _disposeListService.GetUserDisposeList(username);
+            try
+            {
+                return _disposeListService.GetUserDisposeList(username);
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("Item/{disposeListToItemId}")]
-        public void Delete(int disposeListToItemId)
+        public ActionResult Delete(int disposeListToItemId)
         {
-            _disposeListService.DeleteItem(disposeListToItemId);
+            try
+            {
+                _disposeListService.DeleteItem(disposeListToItemId);
+
+                return Ok();
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut("Item/Move/ShoppingList/{disposeListToItemId}")]
