@@ -23,12 +23,6 @@ namespace Taspin.Api.Controllers
             _userService = userService;
         }
 
-        [HttpGet()]
-        public ActionResult<List<UserModel>> Get()
-        {
-            return _dac.SelectUsers();
-        }
-
         // GET api/values/5
         [HttpGet("{userName}")]
         public ActionResult<User> Get(string userName)

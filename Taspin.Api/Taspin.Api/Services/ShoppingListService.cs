@@ -20,17 +20,16 @@ namespace Taspin.Api.Services
 
         ShoppingList IShoppingListService.GetUserShoppingList(string username)
         {
-            var model = _dac.SelectShoppingList(username);
+            var models = _dac.SelectShoppingList(username);
 
             return new ShoppingList
             {
-                Items = model
-                        .Items
+                Items = models
                         .Select(i => new ShoppingList.ShoppingListItem
                         {
                             BarCode = i.barcode,
                             Count = i.count,
-                            Name = i.Name,
+                            Name = i.name,
                             ShoppingListToItemId = i.objid
                         })
                         .ToList()

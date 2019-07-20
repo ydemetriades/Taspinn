@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Taspin.Api.Services;
 using Taspin.Data.Dac;
 using Taspin.Data.Models;
 
@@ -14,23 +15,24 @@ namespace Taspin.Api.Controllers
     public class ShoppingListController : ControllerBase
     {
         private  readonly ShoppingListDac shoppingListDac;
+        private readonly IShoppingListService _shoppingListService;
 
-        public ShoppingListController(ShoppingListDac shoppingListDac)
+        public ShoppingListController(ShoppingListDac shoppingListDac, IShoppingListService shoppingListService)
         {
             this.shoppingListDac = shoppingListDac;
+            this._shoppingListService = shoppingListService;
         }
 
         [HttpGet("{UserName}")]
-        public ActionResult<ShoppingListModel> Get(string username)
+        public ActionResult<ShoppingList> Get(string username)
         {
-            var shoppingListFromDac = shoppingListDac.SelectShoppingList(username);
-            return shoppingListFromDac;
+            return _shoppingListService.GetUserShoppingList(username);
         }
 
         [HttpDelete("Item/{shoppingListToItemId}")]
         public ActionResult Delete(int shoppingListToItemId)
         {
-            shoppingListDac.DeleteItem(shoppingListToItemId);
+            _shoppingListService.DeleteItem(shoppingListToItemId);
 
             return Ok();
         }

@@ -19,13 +19,15 @@ namespace Taspin.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-				.ConfigureAppConfiguration((hostingContext, config) =>
-				{
-					config.SetBasePath(Directory.GetCurrentDirectory());
-					config.AddJsonFile(
-						"appsettings.json", optional: true, reloadOnChange: true);
-					
-				})
-				.UseStartup<Startup>();
+                .UseKestrel()
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(Directory.GetCurrentDirectory());
+                    config.AddJsonFile(
+                        "appsettings.json", optional: true, reloadOnChange: true);
+
+                })
+                .UseStartup<Startup>()
+                .UseUrls("http://0.0.0.0:5001");
     }
 }

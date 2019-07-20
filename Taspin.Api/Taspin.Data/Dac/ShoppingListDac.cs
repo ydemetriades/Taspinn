@@ -22,11 +22,11 @@ namespace Taspin.Data.Dac
             connstring = databaseOptions.ConnectionString;
         }
 
-        public ShoppingListModel SelectShoppingList(string userNameToSelect)
+        public List<ShoppingListItemModel> SelectShoppingList(string userNameToSelect)
         {
             using (var db = new MySqlConnection(connstring))
             {
-                return db.Query<ShoppingListModel>(selectShoppingListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<ShoppingListItemModel>(selectShoppingListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).ToList();
             }
         }
 

@@ -20,12 +20,11 @@ namespace Taspin.Api.Services
 
         public DisposeList GetUserDisposeList(string username)
         {
-            var model = _dac.SelectDisposeList(username);
+            var models = _dac.SelectDisposeList(username);
 
             return new DisposeList
             {
-                Items = model
-                        .Items
+                Items = models
                         .Select(i => new DisposeList.DisposeListItem
                         {
                             BarCode = i.barcode,

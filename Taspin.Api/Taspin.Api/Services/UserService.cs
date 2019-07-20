@@ -23,7 +23,7 @@ namespace Taspin.Api.Services
                 //Name = model.Name,
                 //Password = model.Password,
                 //Surname = model.Surname,
-                Username = model.Username
+                Username = model.username
             };
         }
     }
