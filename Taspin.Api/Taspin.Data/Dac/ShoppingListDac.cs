@@ -9,7 +9,7 @@ using Taspin.Data.Models;
 
 namespace Taspin.Data.Dac
 {
-    class ShoppingListDac
+    public class ShoppingListDac
     {
 
         private readonly string connstring;
@@ -23,10 +23,11 @@ namespace Taspin.Data.Dac
 
         public ShoppingList SelectShoppingList(string userNameToSelect)
         {
-            using (var db = new SqlConnection(connstring))
-            {
-                return db.Query(selectShoppingListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
-            }
+            return new ShoppingList(0, "shoppingListName");
+            //using (var db = new SqlConnection(connstring))
+            //{
+            //    return db.Query(selectShoppingListSP, new { userName = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+            //}
         }
     }
 }
