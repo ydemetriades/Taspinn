@@ -9,15 +9,15 @@ using System.Linq;
 
 namespace Taspin.Data.Dac
 {
-    class UsersDac
+    public class UsersDac
     {
         private readonly string connstring;
 
         private const string selectUserSP = "";
 
-        public UsersDac(string conn)
+        public UsersDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
         public User SelectUser(string userNameToSelect)

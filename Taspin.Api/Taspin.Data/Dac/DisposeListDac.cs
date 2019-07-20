@@ -9,15 +9,15 @@ using Taspin.Data.Models;
 
 namespace Taspin.Data.Dac
 {
-    class DisposeListDac
+    public class DisposeListDac
     {
         private readonly string connstring;
 
         private const string selectDisposeListSP = "";
 
-        public DisposeListDac(string conn)
+        public DisposeListDac(DatabaseOptions databaseOptions)
         {
-            connstring = conn;
+            connstring = databaseOptions.ConnectionString;
         }
 
         public DisposeList SelectDisposeList(string userNameToSelect)
