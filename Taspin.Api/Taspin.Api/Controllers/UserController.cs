@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Taspin.Api.Services;
 using Taspin.Data.Dac;
 using Taspin.Data.Models;
 
@@ -13,24 +14,18 @@ namespace Taspin.Api.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly UsersDac _dac;
+        private readonly IUserService _userService;
 
-        public UserController(UsersDac dac)
+        public UserController(IUserService userService)
         {
-            _dac = dac;
-        }
-
-        [HttpGet()]
-        public ActionResult<List<UserModel>> Get()
-        {
-            return _dac.SelectUsers();
+            _userService = userService;
         }
 
         // GET api/values/5
         [HttpGet("{userName}")]
-        public ActionResult<UserModel> Get(string userName)
+        public ActionResult<User> Get(string userName)
         {
-            return _dac.SelectUser(userName);
+            return _userService.Get(userName);
         }
     }
 }

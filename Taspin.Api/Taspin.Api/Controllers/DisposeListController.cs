@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Taspin.Api.Services;
 using Taspin.Data.Dac;
 using Taspin.Data.Models;
 
@@ -13,29 +14,29 @@ namespace Taspin.Api.Controllers
     public class DisposeListController : ControllerBase
     {
 
-        private readonly DisposeListDac disposeListDac;
+        private readonly IDisposeListService _disposeListService;
 
-        public DisposeListController(DisposeListDac disposeistDac)
+        public DisposeListController(IDisposeListService disposeListService)
         {
-            this.disposeListDac = disposeistDac;
+            this._disposeListService = disposeListService;
         }
 
         [HttpGet("{UserName}")]
-        public ActionResult<DisposeListModel> Get(string username)
+        public ActionResult<DisposeList> Get(string username)
         {
-            return disposeListDac.SelectDisposeList(username);
+            return _disposeListService.GetUserDisposeList(username);
         }
 
         [HttpDelete("Item/{disposeListToItemId}")]
         public void Delete(int disposeListToItemId)
         {
-            disposeListDac.DeleteItem(disposeListToItemId);
+            _disposeListService.DeleteItem(disposeListToItemId);
         }
 
         [HttpPut("Item/Move/ShoppingList/{disposeListToItemId}")]
         public void MoveToShoppingList(int disposeListToItemId)
         {
-            disposeListDac.MoveItemToShoppingList(disposeListToItemId);
+            _disposeListService.MoveToShoppingList(disposeListToItemId);
         }
     }
 }

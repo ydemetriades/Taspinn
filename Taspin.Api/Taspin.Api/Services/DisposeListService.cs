@@ -20,18 +20,17 @@ namespace Taspin.Api.Services
 
         public DisposeList GetUserDisposeList(string username)
         {
-            var model = _dac.SelectDisposeList(username);
+            var models = _dac.SelectDisposeList(username);
 
             return new DisposeList
             {
-                Items = model
-                        .Items
+                Items = models
                         .Select(i => new DisposeList.DisposeListItem
                         {
-                            BarCode = i.BarCode,
-                            Count = i.Count,
-                            DisposeListToItemId = i.DisposeListToItemId,
-                            Name = i.Name,
+                            BarCode = i.barcode,
+                            Count = i.count,
+                            DisposeListToItemId = i.objid,
+                            Name = i.name,
                         })
                         .ToList()
             };
@@ -40,6 +39,11 @@ namespace Taspin.Api.Services
         public void MoveToShoppingList(int listToItemId)
         {
             _dac.MoveItemToShoppingList(listToItemId);
+        }
+
+        public void UpdateItemCountrer(int listToItemId, int counter)
+        {
+            _dac.UpdateCountForItemInDisposeList(listToItemId, counter);
         }
     }
 }

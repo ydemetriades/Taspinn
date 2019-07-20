@@ -13,28 +13,32 @@ namespace Taspin.Api.Services
             _dac = dac;
         }
 
+        public ShoppingList GetUserShoppingList(string username)
+        {
+            var models = _dac.SelectShoppingList(username);
+
+            return new ShoppingList
+            {
+                Items = models
+                        .Select(i => new ShoppingList.ShoppingListItem
+                        {
+                            BarCode = i.barcode,
+                            Count = i.count,
+                            Name = i.name,
+                            ShoppingListToItemId = i.objid
+                        })
+                        .ToList()
+            };
+        }
+
         public void DeleteItem(int listToItemId)
         {
             _dac.DeleteItem(listToItemId);
         }
 
-        ShoppingList IShoppingListService.GetUserShoppingList(string username)
+        public void UpdateItemCountrer(int listToItemId, int counter)
         {
-            var model = _dac.SelectShoppingList(username);
-
-            return new ShoppingList
-            {
-                Items = model
-                        .Items
-                        .Select(i => new ShoppingList.ShoppingListItem
-                        {
-                            BarCode = i.BarCode,
-                            Count = i.Count,
-                            Name = i.Name,
-                            ShoppingListToItemId = i.ShoppingListToItemId
-                        })
-                        .ToList()
-            };
+            _dac.UpdateCountForItemInShoppingList(listToItemId, counter);
         }
     }
 }
