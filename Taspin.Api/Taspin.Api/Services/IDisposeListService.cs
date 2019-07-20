@@ -8,6 +8,7 @@ namespace Taspin.Api.Services
         DisposeList GetUserDisposeList(string username);
         void DeleteItem(int listToItemId);
         void MoveToShoppingList(int listToItemId);
+        void UpdateItemCountrer(int listToItemId, int counter);
     }
 
     public class DisposeList

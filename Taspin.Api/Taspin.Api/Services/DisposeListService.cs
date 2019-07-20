@@ -40,5 +40,10 @@ namespace Taspin.Api.Services
         {
             _dac.MoveItemToShoppingList(listToItemId);
         }
+
+        public void UpdateItemCountrer(int listToItemId, int counter)
+        {
+            _dac.UpdateCountForItemInDisposeList(listToItemId, counter);
+        }
     }
 }
