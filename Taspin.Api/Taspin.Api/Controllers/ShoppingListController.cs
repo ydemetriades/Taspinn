@@ -20,13 +20,18 @@ namespace Taspin.Api.Controllers
             this.shoppingListDac = shoppingListDac;
         }
 
-
-        // GET api/values/5
         [HttpGet("{UserName}")]
         public ActionResult<ShoppingList> Get(string username)
         {
             return shoppingListDac.SelectShoppingList(username);
         }
 
+        [HttpDelete("Item/{shoppingListToItemId}")]
+        public ActionResult Delete(int shoppingListToItemId)
+        {
+            shoppingListDac.DeleteItem(shoppingListToItemId);
+
+            return Ok();
+        }
     }
 }
