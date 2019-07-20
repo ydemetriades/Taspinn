@@ -31,7 +31,17 @@ namespace Taspin.Api
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddScoped<UsersDac>();
+            string taspinDbConnString = Configuration.GetValue<string>("AppSettings:TaspinDatabaseConnectionString");
+
+            services.AddScoped<ShoppingListDac>(tt =>
+            {
+                return new ShoppingListDac(taspinDbConnString);
+            });
+
+            services.AddScoped<DisposeListDac>(tt =>
+            {
+                return new DisposeListDac(taspinDbConnString);
+            });
 
         }
 

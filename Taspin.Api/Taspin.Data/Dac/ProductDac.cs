@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Taspin.Data.Dac
 {
-    class ProductDac
+    public class ProductDac
     {
     }
 }

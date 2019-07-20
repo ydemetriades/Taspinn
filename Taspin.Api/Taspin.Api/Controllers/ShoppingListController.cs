@@ -13,8 +13,14 @@ namespace Taspin.Api.Controllers
     [ApiController]
     public class ShoppingListController : ControllerBase
     {
+        private  readonly ShoppingListDac shoppingListDac;
 
-        private static readonly ShoppingListDac shoppingListDac = new ShoppingListDac(DbConnectionDetails.ConnectionString);
+        public ShoppingListController(ShoppingListDac shoppingListDac)
+        {
+            this.shoppingListDac = shoppingListDac;
+        }
+
+
         // GET api/values/5
         [HttpGet("{UserName}")]
         public ActionResult<ShoppingList> Get(string username)

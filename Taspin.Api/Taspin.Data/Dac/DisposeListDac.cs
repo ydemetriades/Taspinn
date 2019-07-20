@@ -9,7 +9,7 @@ using Taspin.Data.Models;
 
 namespace Taspin.Data.Dac
 {
-    class DisposeListDac
+    public class DisposeListDac
     {
         private readonly string connstring;
 
