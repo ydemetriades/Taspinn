@@ -4,11 +4,12 @@ using System.Runtime.Serialization;
 
 namespace Taspin.Data.Models
 {
-    public class DisposeList
+    [DataContract]
+    public class ShoppingListModel
     {
-        public List<DisposeListItem> Items { get; set; }
+        public List<ShoppingListItemModel> Items { get; set; }
 
-        public class DisposeListItem
+        public class ShoppingListItemModel
         {
             [DataMember(Name = "outName")]
             public string Name { get; set; }
@@ -17,7 +18,10 @@ namespace Taspin.Data.Models
             public string BarCode { get; set; }
 
             [DataMember(Name = "outObjid")]
-            public int DisposeListToItemId { get; set; }
+            public int ShoppingListToItemId { get; set; }
+
+            [DataMember(Name = "outCount")]
+            public int Count { get; set; }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Taspin.Data.Models
 {
-    public class Item
+    public class ItemModel
     {
         public int Id { get; set; }
         public string BarCode { get; set; }

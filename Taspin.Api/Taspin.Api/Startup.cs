@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Taspin.Api.Options;
+using Taspin.Api.Services;
 using Taspin.Data;
 using Taspin.Data.Dac;
 
@@ -40,12 +41,13 @@ namespace Taspin.Api
             });
 
             services.AddScoped<ShoppingListDac>();
-
             services.AddScoped<DisposeListDac>();
-
             services.AddScoped<UsersDac>();
-
             services.AddScoped<ItemsDac>();
+
+            services.AddScoped<IDisposeListService, DisposeListService>();
+            services.AddScoped<IShoppingListService, ShoppingListService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
