@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,7 +25,7 @@ namespace Taspin.Data.Dac
 
         public DisposeListModel SelectDisposeList(string userNameToSelect)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
                 return db.Query<DisposeListModel>(selectDisposeListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
@@ -32,7 +33,7 @@ namespace Taspin.Data.Dac
 
         public void DeleteItem(int disposeListToItemId)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
                 db.Query(deleteDisposeListItemSP, new { item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
             }
@@ -40,7 +41,7 @@ namespace Taspin.Data.Dac
 
         public void MoveItemToShoppingList(int disposeListToItemId)
         {
-            using (var db = new SqlConnection(connstring))
+            using (var db = new MySqlConnection(connstring))
             {
                 db.Query(moveDisposeListItemToShoppingListSP, new { disposed_item_objid = disposeListToItemId }, commandType: CommandType.StoredProcedure);
             }
