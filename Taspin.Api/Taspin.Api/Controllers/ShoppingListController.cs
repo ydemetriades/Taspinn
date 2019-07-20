@@ -21,9 +21,10 @@ namespace Taspin.Api.Controllers
         }
 
         [HttpGet("{UserName}")]
-        public ActionResult<ShoppingList> Get(string username)
+        public ActionResult<ShoppingListModel> Get(string username)
         {
-            return shoppingListDac.SelectShoppingList(username);
+            var shoppingListFromDac = shoppingListDac.SelectShoppingList(username);
+            return shoppingListFromDac;
         }
 
         [HttpDelete("Item/{shoppingListToItemId}")]
@@ -32,6 +33,14 @@ namespace Taspin.Api.Controllers
             shoppingListDac.DeleteItem(shoppingListToItemId);
 
             return Ok();
+        }
+        
+        public class Item
+        {
+            public string Id { get; set; } //TODO: Int
+            public string Name { get; set; }
+            public string Barcode { get; set; }
+            public int Count { get; set; }
         }
     }
 }

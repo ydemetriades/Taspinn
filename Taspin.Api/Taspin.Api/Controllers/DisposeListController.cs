@@ -20,9 +20,8 @@ namespace Taspin.Api.Controllers
             this.disposeListDac = disposeistDac;
         }
 
-
         [HttpGet("{UserName}")]
-        public ActionResult<DisposeList> Get(string username)
+        public ActionResult<DisposeListModel> Get(string username)
         {
             return disposeListDac.SelectDisposeList(username);
         }

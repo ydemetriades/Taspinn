@@ -13,7 +13,5 @@ namespace Taspin.Data.Dac
         {
             connstring = databaseOptions.ConnectionString;
         }
-
-      
     }
 }

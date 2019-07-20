@@ -20,11 +20,11 @@ namespace Taspin.Data.Dac
             connstring = databaseOptions.ConnectionString;
         }
 
-        public User SelectUser(string userNameToSelect)
+        public UserModel SelectUser(string userNameToSelect)
         {
             using (var db = new SqlConnection(connstring))
             {
-                return db.Query(selectUserSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<UserModel>(selectUserSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 

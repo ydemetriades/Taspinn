@@ -22,11 +22,11 @@ namespace Taspin.Data.Dac
             connstring = databaseOptions.ConnectionString;
         }
 
-        public DisposeList SelectDisposeList(string userNameToSelect)
+        public DisposeListModel SelectDisposeList(string userNameToSelect)
         {
             using (var db = new SqlConnection(connstring))
             {
-                return db.Query<DisposeList>(selectDisposeListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
+                return db.Query<DisposeListModel>(selectDisposeListSP, new { input_username = userNameToSelect }, commandType: CommandType.StoredProcedure).First();
             }
         }
 
