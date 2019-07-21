@@ -21,4 +21,4 @@ spec:
         - containerPort: 5001
         env:
         - name: AppSettings__TaspinDatabaseConnectionString
-          value: "Server=192.168.0.15;Port=30306;Database=TastPinDatabase;Uid=root;Pwd=1234"
+          value: "Server=192.168.0.15;Port=32453;Database=TastPinDatabase;Uid=root;Pwd=1234"

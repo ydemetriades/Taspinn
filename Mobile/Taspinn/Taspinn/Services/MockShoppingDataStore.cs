@@ -13,8 +13,7 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            //BaseAddress = new Uri("http://192.168.0.6:5001/api/")
-            BaseAddress = new Uri("http://127.0.0.1:35001/api/")
+            BaseAddress = new Uri("http://192.168.0.15:32547/api/")
         };
 
         List<Item> items = new List<Item>();

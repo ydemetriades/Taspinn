@@ -24,7 +24,7 @@
         </StackLayout>
         <Label Text="Barcode" d:Text="Barcode" FontSize="Large" />
         <zxing:ZXingBarcodeImageView WidthRequest="400" HeightRequest="100" 
-                                     BarcodeValue="1337133713378" 
+                                     BarcodeValue="{Binding Item.Barcode}" 
                                      BarcodeFormat="EAN_13">
             <zxing:ZXingBarcodeImageView.BarcodeOptions>
                 <zxcm:EncodingOptions Width="400" Height="100" />

@@ -20,8 +20,8 @@ namespace Taspinn.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Shopping, Title="Shopping List" },
-                new HomeMenuItem {Id = MenuItemType.Disposed, Title="Disposed List" },
+                new HomeMenuItem {Id = MenuItemType.Shopping, Title="Shop List" },
+                new HomeMenuItem {Id = MenuItemType.Disposed, Title="Disposal List" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 
