@@ -22,19 +22,19 @@ namespace Taspinn.Views
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
-        {
-            InitializeComponent();
+        //public ItemDetailPage()
+        //{
+        //    InitializeComponent();
 
-            var item = new Item
-            {
-                Name = "Item 1",
-                Description = "This is an item description."
-            };
+        //    var item = new Item
+        //    {
+        //        Name = "Item 1",
+        //        Description = "This is an item description."
+        //    };
 
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
-        }
+        //    viewModel = new ItemDetailViewModel(,item);
+        //    BindingContext = viewModel;
+        //}
 
         async void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {

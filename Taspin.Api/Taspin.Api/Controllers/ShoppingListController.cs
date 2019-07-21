@@ -28,7 +28,13 @@ namespace Taspin.Api.Controllers
 
             return Ok();
         }
-        
+
+        [HttpPut("Item/{shoppingListToItemId}/Count/{count}")]
+        public void UpdateItemCount(int shoppingListToItemId, int count)
+        {
+            _shoppingListService.UpdateItemCountrer(shoppingListToItemId, count);
+        }
+
         public class Item
         {
             public string Id { get; set; } //TODO: Int

@@ -13,7 +13,7 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://192.168.0.6:5001/api/shoppinglist")
+            BaseAddress = new Uri("http://192.168.0.6:5001/api/")
         };
 
         List<Item> items = new List<Item>();
@@ -39,7 +39,7 @@ namespace Taspinn.Services
 
         public async Task<bool> UpdateItemCountAsync(int id, int count)
         {
-            var response = await _httpClient.PutAsync($"Item/{id}/Count/{count}", null);
+            var response = await _httpClient.PutAsync($"ShoppingList/Item/{id}/Count/{count}", null);
             if (response == null)
             {
                 return false;
@@ -63,7 +63,7 @@ namespace Taspinn.Services
 
         public async Task<bool> DeleteItemAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"Item/{id}");
+            var response = await _httpClient.DeleteAsync($"ShoppingList/Item/{id}");
             if(response == null)
             {
                 return false;

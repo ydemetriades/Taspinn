@@ -24,7 +24,7 @@ namespace Taspinn.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(ItemDetailViewModel.DataStoreType.Disposed, item)));
 
             // Manually deselect item.
             DisposedItemsListView.SelectedItem = null;

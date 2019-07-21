@@ -13,7 +13,7 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://192.168.0.6:5001/api/disposelist")
+            BaseAddress = new Uri("http://192.168.0.6:5001/api/DisposeList/")
         };
 
         List<Item> items;
@@ -83,7 +83,7 @@ namespace Taspinn.Services
         {
             if (items == null || !items.Any() || forceRefresh == true)
             {
-                var response = await _httpClient.GetAsync($"DisposeList/{username}");
+                var response = await _httpClient.GetAsync($"{username}");
 
                 if (response == null)
                 {
