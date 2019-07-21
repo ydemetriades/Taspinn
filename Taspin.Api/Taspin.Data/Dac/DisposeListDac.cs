@@ -22,7 +22,7 @@ namespace Taspin.Data.Dac
             connstring = databaseOptions.ConnectionString;
         }
 
-        public void AddItem(int barcode, string username)
+        public void AddItem(string barcode, string username)
         {
             using(var db = new MySqlConnection(connstring))
             {

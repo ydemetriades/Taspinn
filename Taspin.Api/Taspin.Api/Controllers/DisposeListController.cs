@@ -18,7 +18,7 @@ namespace Taspin.Api.Controllers
         }
 
         [HttpPut("Item/Add/{barcode}/{userName}")]
-        public ActionResult Add(int barcode, string username)
+        public ActionResult Add(string barcode, string username)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Taspin.Api.Controllers
 
                 return Ok();
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }

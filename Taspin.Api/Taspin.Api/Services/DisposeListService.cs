@@ -14,7 +14,7 @@ namespace Taspin.Api.Services
             _dac = dac;
         }
 
-        public void AddItem(int barcode, string username)
+        public void AddItem(string barcode, string username)
         {
             ServiceValidator.ValidateString(username, nameof(username));
 
