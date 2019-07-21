@@ -17,6 +17,22 @@ namespace Taspin.Api.Controllers
             this._disposeListService = disposeListService;
         }
 
+        [HttpPut("Item/Add/{barcode}/{userName}")]
+        public ActionResult Add(int barcode, string username)
+        {
+            try
+            {
+                _disposeListService.AddItem(barcode, username);
+
+                return Ok();
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
         [HttpGet("{UserName}")]
         public ActionResult<DisposeList> Get(string username)
         {

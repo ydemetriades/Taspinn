@@ -14,20 +14,24 @@ namespace Taspin.Api.Services
             _dac = dac;
         }
 
+        public void AddItem(int barcode, string username)
+        {
+            ServiceValidator.ValidateString(username, nameof(username));
+
+            _dac.AddItem(barcode, username);
+        }
+
         public void DeleteItem(int listToItemId)
         {
-            if (listToItemId <= 0)
-                throw new ArgumentException("Id was less or equal zero", nameof(listToItemId));
+            ServiceValidator.ValidateGreaterThanZero(listToItemId, nameof(listToItemId));
 
             _dac.DeleteItem(listToItemId);
         }
 
+
         public DisposeList GetUserDisposeList(string username)
         {
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                throw new ArgumentException("Username was null or white space", nameof(username));
-            }
+            ServiceValidator.ValidateString(username, nameof(username));
 
             var models = _dac.SelectDisposeList(username);
 
@@ -47,11 +51,16 @@ namespace Taspin.Api.Services
 
         public void MoveToShoppingList(int listToItemId)
         {
+            ServiceValidator.ValidateGreaterThanZero(listToItemId, nameof(listToItemId));
+
             _dac.MoveItemToShoppingList(listToItemId);
         }
 
         public void UpdateItemCountrer(int listToItemId, int counter)
         {
+            ServiceValidator.ValidateGreaterThanZero(listToItemId, nameof(listToItemId));
+            ServiceValidator.ValidateGreaterThanZero(counter, nameof(counter));
+
             _dac.UpdateCountForItemInDisposeList(listToItemId, counter);
         }
     }

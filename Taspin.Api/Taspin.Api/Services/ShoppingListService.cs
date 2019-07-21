@@ -16,6 +16,8 @@ namespace Taspin.Api.Services
 
         public ShoppingList GetUserShoppingList(string username)
         {
+            ServiceValidator.ValidateString(username, nameof(username));
+
             var models = _dac.SelectShoppingList(username);
 
             return new ShoppingList
@@ -34,11 +36,15 @@ namespace Taspin.Api.Services
 
         public void DeleteItem(int listToItemId)
         {
+            ServiceValidator.ValidateGreaterThanZero(listToItemId, nameof(listToItemId));
+
             _dac.DeleteItem(listToItemId);
         }
 
         public void UpdateItemCountrer(int listToItemId, int counter)
         {
+            ServiceValidator.ValidateGreaterThanZero(listToItemId, nameof(listToItemId));
+
             _dac.UpdateCountForItemInShoppingList(listToItemId, counter);
         }
     }
