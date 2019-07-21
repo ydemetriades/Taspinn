@@ -13,7 +13,8 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://192.168.0.6:5001/api/")
+            //BaseAddress = new Uri("http://192.168.0.6:5001/api/")
+            BaseAddress = new Uri("http://127.0.0.1:35001/api/")
         };
 
         List<Item> items = new List<Item>();
@@ -21,20 +22,20 @@ namespace Taspinn.Services
         public MockShoppingDataStore()
         {
             items = new List<Item>();
-            var mockItems = new List<Item>
-            {
-                new Item { Id = 1, Name = "First item", Description="This is an item description." },
-                new Item { Id = 2, Name = "Second item", Description="This is an item description." },
-                new Item { Id = 3, Name = "Third item", Description="This is an item description." },
-                new Item { Id = 4, Name = "Fourth item", Description="This is an item description." },
-                new Item { Id = 5, Name = "Fifth item", Description="This is an item description." },
-                new Item { Id = 6, Name = "Sixth item", Description="This is an item description." }
-            };
+            //var mockItems = new List<Item>
+            //{
+            //    new Item { Id = 1, Name = "First item", Description="This is an item description." },
+            //    new Item { Id = 2, Name = "Second item", Description="This is an item description." },
+            //    new Item { Id = 3, Name = "Third item", Description="This is an item description." },
+            //    new Item { Id = 4, Name = "Fourth item", Description="This is an item description." },
+            //    new Item { Id = 5, Name = "Fifth item", Description="This is an item description." },
+            //    new Item { Id = 6, Name = "Sixth item", Description="This is an item description." }
+            //};
 
-            foreach (var item in mockItems)
-            {
-                items.Add(item);
-            }
+            //foreach (var item in mockItems)
+            //{
+            //    items.Add(item);
+            //}
         }
 
         public async Task<bool> UpdateItemCountAsync(int id, int count)

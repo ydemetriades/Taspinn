@@ -13,7 +13,8 @@ namespace Taspinn.Services
     {
         private HttpClient _httpClient = new HttpClient()
         {
-            BaseAddress = new Uri("http://192.168.0.6:5001/api/DisposeList/")
+            //BaseAddress = new Uri("http://192.168.0.6:5001/api/DisposeList/")
+            BaseAddress = new Uri("http://127.0.0.1:35001/api/DisposeList/")
         };
 
         List<Item> items;
@@ -21,20 +22,20 @@ namespace Taspinn.Services
         public MockDisposedDataStore()
         {
             items = new List<Item>();
-            var mockItems = new List<Item>
-            {
-                new Item { Id = 1, Name = "First item", Description="This is an item description." , Count = 3},
-                new Item { Id = 2, Name = "Second item", Description="This is an item description.", Count = 5 },
-                new Item { Id = 3, Name = "Third item", Description="This is an item description." },
-                new Item { Id = 4, Name = "Fourth item", Description="This is an item description." },
-                new Item { Id = 5, Name = "Fifth item", Description="This is an item description." },
-                new Item { Id = 6, Name = "Sixth item", Description="This is an item description." }
-            };
+            //var mockItems = new List<Item>
+            //{
+            //    new Item { Id = 1, Name = "First item", Description="This is an item description." , Count = 3},
+            //    new Item { Id = 2, Name = "Second item", Description="This is an item description.", Count = 5 },
+            //    new Item { Id = 3, Name = "Third item", Description="This is an item description." },
+            //    new Item { Id = 4, Name = "Fourth item", Description="This is an item description." },
+            //    new Item { Id = 5, Name = "Fifth item", Description="This is an item description." },
+            //    new Item { Id = 6, Name = "Sixth item", Description="This is an item description." }
+            //};
 
-            foreach (var item in mockItems)
-            {
-                items.Add(item);
-            }
+            //foreach (var item in mockItems)
+            //{
+            //    items.Add(item);
+            //}
         }
 
         public async Task<bool> UpdateCountAsync(int id, int count)
@@ -48,12 +49,7 @@ namespace Taspinn.Services
             if (response.IsSuccessStatusCode)
             {
                 var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-
-                items.Remove(oldItem);
-
                 oldItem.Count = count;
-
-                items.Add(oldItem);
 
                 return true;
             }
@@ -117,9 +113,24 @@ namespace Taspinn.Services
             return items;
         }
 
-        public Task<bool> MoveItemToShoppingListAsync(bool forceRefresh = false)
+        public async Task<bool> MoveItemToShoppingListAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PutAsync($"Item/Move/ShoppingList/{id}", null);
+
+            if (response == null)
+            {
+                return false;
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+                items.Remove(oldItem);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

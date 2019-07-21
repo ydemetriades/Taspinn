@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: taspinn-api-service
+  labels:
+    run: taspinn-api-service
+spec:
+  type: NodePort
+  ports:
+  - port: 5001
+    targetPort: 31234
+    protocol: TCP
+    name: http
+  selector:
+    app: taspinn-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taspinn-api-deployment
+  labels:
+    app: taspinn-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: taspinn-api
+  template:
+    metadata:
+      labels:
+        app: taspinn-api
+    spec:
+      containers:
+      - name: taspinn-api
+        image: ydemetriades/taspinn-api:latest
+        ports:
+        - containerPort: 5001
+        env:
+        - name: AppSettings__TaspinDatabaseConnectionString
+          value: "Server=192.168.0.15;Port=30306;Database=TastPinDatabase;Uid=root;Pwd=1234"

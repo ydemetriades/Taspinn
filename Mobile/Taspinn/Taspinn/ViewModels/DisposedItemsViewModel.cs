@@ -78,19 +78,19 @@ namespace Taspinn.ViewModels
 
         public async Task<bool> MoveItemToShoppingListAsync(int id)
         {
-            throw new NotImplementedException();
-            //var result = await DataStore.DeleteItemAsync(id);
+            //throw new NotImplementedException();
+            var result = await DataStore.MoveItemToShoppingListAsync(id);
 
-            //if (result)
-            //{
-            //    var item = Items.FirstOrDefault(x => x.Id == id);
-            //    if (item != null)
-            //    {
-            //        Items.Remove(item);
-            //    }
-            //}
+            if (result)
+            {
+                var item = Items.FirstOrDefault(x => x.Id == id);
+                if (item != null)
+                {
+                    Items.Remove(item);
+                }
+            }
 
-            //return result;
+            return result;
         }
     }
 }

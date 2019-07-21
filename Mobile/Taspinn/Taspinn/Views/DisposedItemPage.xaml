@@ -15,6 +15,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnMoveToShopList" CommandParameter="{Binding .}" Text="Move" />
                             <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                         </ViewCell.ContextActions>
                         <StackLayout Padding="10">

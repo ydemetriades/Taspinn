@@ -54,5 +54,18 @@ namespace Taspinn.Views
                 await viewModel.DeleteItemAsync(item.Id);
             }
         }
+
+        public async void OnMoveToShopList(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            var item = (Item)mi.CommandParameter;
+
+            var move = await DisplayAlert($"Move {item.Name}", "This action cannot be undone.", "Move", "Cancel");
+
+            if (move)
+            {
+                await viewModel.MoveItemToShoppingListAsync(item.Id);
+            }
+        }
     }
 }
