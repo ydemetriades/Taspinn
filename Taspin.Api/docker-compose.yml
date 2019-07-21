@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  taspin.api:
+    image: ${DOCKER_REGISTRY-}taspin
+    build:
+      context: .
+      dockerfile: Taspin.Api/Dockerfile

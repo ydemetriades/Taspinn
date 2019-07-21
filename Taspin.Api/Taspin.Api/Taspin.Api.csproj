@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
    
     <StartupObject>Taspin.Api.Program</StartupObject>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>6131cc46-7d95-4dd5-82da-5654e4bd19c5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,5 +28,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Taspin.Data\Taspin.Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dockerfile" />
   </ItemGroup>
 </Project>
